@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Container for the iframe and the overlay */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+        
+        /* Styles for the iframe */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Overlay to cover the watermark */
+        .watermark-cover {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #191919;
+        }
+        
+        /* Loading overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white; /* White background for the loading overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1; /* Ensure it is above the iframe */
+        }
+        
+        /* Logo styles */
+        .logo {
+            width: 100px; /* Adjust the size as needed */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <iframe id="chart-iframe" src="https://www.chartbase.so/embed/d3dcfbbe-e7e1-4d0d-88b2-9f6ec539ed69"></iframe>
+        <div class="watermark-cover"></div>
+        <div id="loading-overlay" class="loading-overlay">
+            <img src="/logo.png" alt="Loading..." class="logo">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('chart-iframe').onload = function() {
+            setTimeout(function() {
+                // Hide the loading overlay after 5 seconds
+                document.getElementById('loading-overlay').style.display = 'none';
+            }, 5000); // 5000 milliseconds = 5 seconds
+        };
+    </script>
+</body>
+</html>
